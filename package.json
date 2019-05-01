@@ -1,0 +1,8 @@
+{
+  "name": "xedike-v3",
+  "version": "1.0.0",
+  "description": "Clone of xedike.vn",
+  "main": "server.js",
+  "author": "Michael Phan",
+  "license": "MIT"
+}
