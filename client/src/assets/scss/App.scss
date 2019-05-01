@@ -1,0 +1,68 @@
+@import "../../../node_modules/antd/dist/antd.css";
+@import "./bootstrap.min.scss";
+@import "./Utils.scss";
+
+$primary: #007bff;
+$lighter-blue: #e6f7ff;
+$gray: #595959;
+$orange: #fa8c16;
+
+* {
+  margn: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Roboto" sans-serif;
+}
+
+// NAVBAR
+
+.active {
+  height: 70%;
+  background-color: $primary;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+
+// END OF NAVBAR
+
+// HOME PAGE
+.landing {
+  background: url("https://api.xedike.vn/StaticFiles/TopImage/Default/img_topbg_home.png?_t=1520592869.56458")
+    no-repeat center center/cover;
+}
+
+.introduction {
+  background-color: #fff;
+  padding: 70px 0;
+}
+
+.why {
+  padding: 50px 0;
+  background-color: $lighter-blue;
+}
+
+.our-number {
+  background: url("https://api.xedike.vn/StaticFiles/BottomImage/Default/img_background_static.png?_t=1520592870.77665")
+    no-repeat center center/cover;
+}
+
+.dark-overlay {
+  padding: 70px 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($gray, 0.8);
+}
+
+.promote {
+  background-color: $orange;
+}
+// END OF HOME PAGE
+
+// FOOTER
+// END OF FOOTER
