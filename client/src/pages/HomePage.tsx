@@ -5,6 +5,28 @@ import Text from "antd/lib/typography/Text";
 import Landing from "../components/Landing";
 const { Content } = Layout;
 
+const OurNumberItem = ({
+  number,
+  title,
+  detail
+}: {
+  number: string;
+  title: string;
+  detail: string;
+}) => {
+  return (
+    <div className="d-flex flex-column align-items-">
+      <Title level={2} className="text-primary font-weight-normal">
+        {number}
+      </Title>
+      <Text strong className="text-white mb-2">
+        {title}
+      </Text>
+      <Text className="text-white">{detail}</Text>
+    </div>
+  );
+};
+
 const HomePage = () => {
   return (
     <Content>
@@ -74,45 +96,40 @@ const HomePage = () => {
       <div className="our-number">
         <div className="dark-overlay">
           <div className="container">
-            <Row>
+            <Row type="flex" align="middle" gutter={32}>
               <Col md={24} lg={12}>
-                <img src="/img/img_mac.png" />
+                <img
+                  src="/img/img_mac.png"
+                  style={{ width: "90%", height: "90%" }}
+                />
               </Col>
-              <Col md={24} lg={6}>
-                <div className="d-flex flex-column align-items-">
-                  <Title level={2}>685</Title>
-                  <Text strong>Hanh khach</Text>
-                  <Text>
-                    Hàng nghìn lượt khách tin tưởng chúng tôi để tìm những
-                    chuyến xe với chất lượng tốt nhất.
-                  </Text>
-                </div>
-                <div className="d-flex flex-column align-items-">
-                  <Title level={2}>685</Title>
-                  <Text strong>Hanh khach</Text>
-                  <Text>
-                    Hàng nghìn lượt khách tin tưởng chúng tôi để tìm những
-                    chuyến xe với chất lượng tốt nhất.
-                  </Text>
-                </div>
+              <Col className="align-self-start" md={24} lg={6}>
+                <OurNumberItem
+                  number="685"
+                  title="Hanh khach"
+                  detail="Hàng nghìn lượt khách tin tưởng chúng tôi để tìm những chuyến xe với chất lượng tốt nhất."
+                />
+                <br />
+                <OurNumberItem
+                  number="426"
+                  title="Chuyen xe"
+                  detail="Số liệu này cho chúng tôi biết bạn đã về đến nhà an toàn."
+                />
               </Col>
-              <Col md={24} lg={6}>
-                <div className="d-flex flex-column align-items-">
-                  <Title level={2}>685</Title>
-                  <Text strong>Hanh khach</Text>
-                  <Text>
-                    Hàng nghìn lượt khách tin tưởng chúng tôi để tìm những
-                    chuyến xe với chất lượng tốt nhất.
-                  </Text>
-                </div>
-                <div className="d-flex flex-column align-items-">
-                  <Title level={2}>685</Title>
-                  <Text strong>Hanh khach</Text>
-                  <Text>
-                    Hàng nghìn lượt khách tin tưởng chúng tôi để tìm những
-                    chuyến xe với chất lượng tốt nhất.
-                  </Text>
-                </div>
+              <Col className="align-self-start" md={24} lg={6}>
+                <OurNumberItem
+                  number="483"
+                  title="Tai xe"
+                  detail="Hệ thống của chúng tôi kết nối hàng trăm tài xế sẵn sàng phục vụ nhu cầu đi lại mỗi ngày."
+                />
+                <br />
+                <OurNumberItem
+                  number="4385.32"
+                  title="Khí CO2 được giảm (kg)"
+                  detail="Chúng ta đã góp phần làm giảm lượng khí CO2 trung bình mỗi ngày.
+
+									Trái Đất sẽ rất biết ơn chúng ta về điều này."
+                />
               </Col>
             </Row>
           </div>

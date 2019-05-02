@@ -4,5 +4,9 @@
   "description": "Clone of xedike.vn",
   "main": "server.js",
   "author": "Michael Phan",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  },
+  "dependencies": {}
 }
