@@ -4,5 +4,12 @@
   "description": "Clone of xedike.vn",
   "main": "server.js",
   "author": "Michael Phan",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "ts-node-dev": "^1.0.0-pre.33",
+    "typescript": "^3.4.5"
+  }
 }
