@@ -4,6 +4,7 @@
 
 $primary: #007bff;
 $lighter-blue: #e6f7ff;
+$light: #f2f2f2;
 $gray: #595959;
 $orange: #fa8c16;
 
@@ -24,6 +25,18 @@ html {
   background-color: $primary;
   border-radius: 5px;
   padding: 0 10px;
+}
+
+.register-selection {
+  padding: 2rem;
+  border: 1px solid $light;
+  border-radius: 5px;
+}
+
+.register-selection:hover {
+  cursor: pointer;
+  border: 1px solid $primary;
+  background-color: $light;
 }
 
 // END OF NAVBAR
@@ -63,6 +76,16 @@ html {
   background-color: $orange;
 }
 // END OF HOME PAGE
+
+// TRIPS LIST PAGE
+.trips-list-steps {
+  background-color: #fff;
+}
+
+.trips-list-card {
+  width: 100%;
+}
+// END OF TRIPS LIST PAGE
 
 // FOOTER
 // END OF FOOTER

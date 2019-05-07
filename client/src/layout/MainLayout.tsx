@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "antd";
-import NavbarLayout from "./NavbarLayout";
+import NavbarContainer from "../containers/NavbarContainer";
 import FooterLayout from "./FooterLayout";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const MainLayout = ({ children }: Props) => {
   return (
     <Layout className="layout">
-      <NavbarLayout />
+      <NavbarContainer />
       {children}
       <FooterLayout />
     </Layout>

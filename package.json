@@ -5,8 +5,8 @@
   "main": "server.js",
   "author": "Michael Phan",
   "license": "MIT",
-  "devDependencies": {
-    "node-sass": "^4.12.0"
-  },
-  "dependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
 }
