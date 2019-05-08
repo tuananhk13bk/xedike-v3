@@ -50,9 +50,8 @@ export default class RegisterModal extends React.Component<
   };
 
   handleCloseModal = () => {
-    this.setState({ registerPassenger: false, registerDriver: false }, () =>
-      this.props.toggleRegisterModal()
-    );
+    this.props.toggleRegisterModal();
+    this.clearAllInternalStates();
   };
 
   handleSubmit = (e: any) => {
