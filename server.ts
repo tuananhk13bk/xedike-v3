@@ -1,19 +1,15 @@
 // lib/app.ts
-import express = require("express");
-
+import * as express from "express";
 // Create a new express application instance
 const app: express.Application = express();
-import db from "./config/database";
+// import { router } from "./routes/user";
+import userRouter from "./routes/user";
 
-db.execute("SELECT * FROM provinces_list")
-  .then(result => {
-    console.log(result);
-  })
-  .catch(console.log);
-
-app.get("/", function(req, res) {
-  res.send("Hello World!");
-});
+// middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 const port = 5000 || process.env.PORT;
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
+
+app.use("/api/user", userRouter);
