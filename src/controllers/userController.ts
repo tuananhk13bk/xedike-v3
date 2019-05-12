@@ -1,17 +1,11 @@
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import keys from "../config/keys";
 
 import User from "../models/User";
+import { Response, Request } from "express";
 
-const postRegisterUser = async (req, res) => {
-  const {
-    username,
-    password,
-    firstName,
-    lastName,
-    phone,
-    dateOfBirth
-  } = req.body;
+const postRegisterUser = async (req: Request, res: Response) => {
+  const { username, phone, password } = req.body;
   const error500 = "Internal Server Error";
   try {
     const { isExisted, clientErrors } = await User.checkExists({
@@ -21,14 +15,11 @@ const postRegisterUser = async (req, res) => {
     if (isExisted) {
       return res.status(400).json(clientErrors);
     }
-    const newUser = new User(
+    const newUser = new User({
       username,
-      password,
-      firstName,
-      lastName,
       phone,
-      dateOfBirth
-    );
+      password
+    });
     const isHashed = await newUser.hashPassword();
     if (!isHashed) {
       return res.status(500).json(error500);
@@ -41,7 +32,7 @@ const postRegisterUser = async (req, res) => {
     res.status(500).json(error500);
   }
 };
-const postLoginUser = async (req, res) => {
+const postLoginUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   const error500 = "Internal Server Error";
   const invalidAccountError = "Incorrect username or password";
@@ -60,19 +51,26 @@ const postLoginUser = async (req, res) => {
     const payload = {
       id: user.id,
       username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName
+      email: user.email,
+      phone: user.phone
     };
     // Sign token
-    jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-      res.json({
-        success: true,
-        token: `Bearer ${token}`
-      });
-    });
+    jwt.sign(
+      payload,
+      keys.secretOrKey + "abcd",
+      { expiresIn: 3600 },
+      (err, token) => {
+        res.json({
+          success: true,
+          token: `Bearer ${token}`
+        });
+      }
+    );
   } catch (err) {
     res.status(500).json(error500);
   }
 };
 
-export { postRegisterUser, postLoginUser };
+const postChangePassword = async (req: Request, res: Response) => {};
+
+export { postRegisterUser, postLoginUser, postChangePassword };
