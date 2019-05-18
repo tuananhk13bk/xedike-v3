@@ -1,4 +1,5 @@
-import React from "react";
+import * as React from "react";
+import { Link } from "react-router-dom";
 import { Layout, Row, Col, Icon, Typography } from "antd";
 const { Title, Text } = Typography;
 const { Footer } = Layout;
@@ -11,7 +12,7 @@ const FooterLayout = () => {
           <Col lg={6} md={12}>
             <div className="mb-5">
               <img
-                src="/img/img_logo_footer.png"
+                src={require("../assets/img/img_logo_footer.png")}
                 alt="Footer Brand Logo"
                 width="222"
                 height="85"
@@ -80,9 +81,9 @@ const FooterLayout = () => {
             <Col key={title} lg={6} md={12}>
               <Title level={4}>{title}</Title>
               {items.map(item => (
-                <a key={item} href="#" className="d-block no-decoration mb-2">
+                <Link key={item} to="/" className="d-block no-decoration mb-2">
                   <Text>{item}</Text>
-                </a>
+                </Link>
               ))}
             </Col>
           ))}
@@ -92,21 +93,26 @@ const FooterLayout = () => {
           {[
             {
               text: `Ban quyen XeDiKe.vn. Giu toan quyen.`,
-              imageUri: "/img/logo_bo_cong_thuong.png"
+              imageUri: require("../assets/img/logo_bo_cong_thuong.png")
             },
             {
               text: "Empowered by DNES",
-              imageUri: "/img/logo_dnes.jpg"
+              imageUri: require("../assets/img/logo_dnes.jpg")
             },
             {
               text: "Phat trien boi High Tech Software Ltd.,",
-              imageUri: "/img/img_logo_sioux.jpg"
+              imageUri: require("../assets/img/img_logo_sioux.jpg")
             }
           ].map((item, index) => (
             <Col key={item.text} lg={8} md={24}>
               <div className="d-flex flex-row align-items-center">
                 <Text>{item.text}</Text>
-                <img src={item.imageUri} width="106" height="40" />
+                <img
+                  src={item.imageUri}
+                  alt={item.text}
+                  width="106"
+                  height="40"
+                />
               </div>
             </Col>
           ))}

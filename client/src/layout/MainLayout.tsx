@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { Layout } from "antd";
 import NavbarContainer from "../containers/NavbarContainer";
-import FooterLayout from "./FooterLayout";
+import FooterLayout from "../layout/FooterLayout";
 
-interface Props {
-  children: React.ReactNode;
-}
+interface IMainLayoutProps {}
 
-const MainLayout = ({ children }: Props) => {
+const MainLayout: React.FunctionComponent<IMainLayoutProps> = ({
+  children
+}) => {
   return (
-    <Layout className="layout">
+    <Layout className="main-layout">
       <NavbarContainer />
       {children}
       <FooterLayout />

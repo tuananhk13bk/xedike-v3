@@ -5,14 +5,11 @@ interface IFormInputProps {
   autoFocus: boolean;
   size: any;
   type: string;
-  min?: string;
-  max?: string;
-  step?: string;
-  prefix: any;
+  prefix?: any;
   name: string;
   placeholder: string;
   value: string;
-  errorMessage: string;
+  errorMessage?: string;
   onChange: (e: any) => void;
 }
 
@@ -26,9 +23,6 @@ const FormInput: React.FunctionComponent<IFormInputProps> = props => {
         autoFocus={props.autoFocus}
         size={props.size}
         type={props.type}
-        min={props.min ? props.min : ""}
-        max={props.max ? props.max : ""}
-        step={props.step ? props.step : ""}
         prefix={props.prefix}
         name={props.name}
         placeholder={props.placeholder}

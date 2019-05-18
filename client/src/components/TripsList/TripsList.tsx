@@ -1,10 +1,7 @@
 import * as React from "react";
 import { Card, Icon, Row, Col, Avatar, Rate } from "antd";
-import data from "../../data.json";
+import data from "../../data";
 import Text from "antd/lib/typography/Text";
-import RateStars from "./RateStar";
-import RateStar from "./RateStar";
-import calcNumberOfStarsEachType from "../../utils/calcNumberOfStarsEachType.js";
 
 interface ITripsListProps {}
 

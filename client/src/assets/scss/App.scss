@@ -1,5 +1,5 @@
-@import "../../../node_modules/antd/dist/antd.css";
 @import "./bootstrap.min.scss";
+@import "~antd/dist/antd.css";
 @import "./Utils.scss";
 
 $primary: #007bff;
@@ -7,6 +7,8 @@ $lighter-blue: #e6f7ff;
 $light: #f2f2f2;
 $gray: #595959;
 $orange: #fa8c16;
+$bluegrey: #263238;
+$danger: #dc3545;
 
 * {
   margn: 0;
@@ -16,27 +18,91 @@ $orange: #fa8c16;
 html {
   font-size: 16px;
   font-family: "Roboto" sans-serif;
+  overflow-x: hidden;
 }
 
 // NAVBAR
 
-.active {
+.navbar-layout {
+  height: 70px;
+  background: $bluegrey;
+}
+
+.nav-item {
+  padding: 0 1rem;
+  color: #fff;
+  text-decoration: none !important;
+  display: flex;
+  align-items: center;
+}
+
+.menu-logo {
+  max-width: 238px;
+  height: 70px;
+  img {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+.nav-trips-list {
+  border-bottom: 5px solid $bluegrey;
+  span {
+    margin-top: 5px;
+  }
+  &:hover {
+    color: #fff;
+    border-bottom: 5px solid $primary;
+  }
+}
+
+.nav-item-login {
+  display: none;
+  &:hover {
+    cursor: pointer;
+    color: $primary;
+  }
+}
+
+.nav-item-register {
+  display: none;
+  &:hover {
+    cursor: pointer;
+    color: #fff;
+    filter: brightness(120%);
+  }
+}
+
+.nav-item-active {
   height: 70%;
-  background-color: $primary;
+  padding: 0 1rem;
+  background: $primary;
   border-radius: 5px;
-  padding: 0 10px;
+  display: flex;
+  align-items: center;
 }
 
 .register-selection {
   padding: 2rem;
   border: 1px solid $light;
   border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid $primary;
+    background-color: $light;
+  }
 }
 
-.register-selection:hover {
-  cursor: pointer;
-  border: 1px solid $primary;
-  background-color: $light;
+.fixed-bottom-item {
+  background: $bluegrey;
+  opacity: 0.8;
+  padding: 1rem 0;
+}
+
+.login-alert {
+  margin-bottom: 1rem;
+  color: $danger;
 }
 
 // END OF NAVBAR
@@ -45,6 +111,8 @@ html {
 .landing {
   background: url("https://api.xedike.vn/StaticFiles/TopImage/Default/img_topbg_home.png?_t=1520592869.56458")
     no-repeat center center/cover;
+  width: 100%;
+  height: 100%;
 }
 
 .introduction {
@@ -69,7 +137,7 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba($gray, 0.9);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .promote {

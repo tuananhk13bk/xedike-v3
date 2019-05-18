@@ -1,5 +1,5 @@
-import React from "react";
-import { Layout, Breadcrumb, Row, Col, Button, Icon } from "antd";
+import * as React from "react";
+import { Layout, Row, Col, Button } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import Landing from "../components/Landing";
@@ -62,19 +62,19 @@ const HomePage = () => {
           <Row gutter={32}>
             {[
               {
-                image: "/img/img_trust.png",
+                image: require("../assets/img/img_trust.png"),
                 title: "Tin tuong",
                 detail:
                   "Bạn sẽ biết tài xế và bạn đồng hành của bạn là ai. Điều đó giúp bạn có những trải nghiệm tốt hơn trên hành trình của mình."
               },
               {
-                image: "/img/img_safe.png",
+                image: require("../assets/img/img_safe.png"),
                 title: "Chu dong",
                 detail:
                   "Thời gian chờ, số ghế trống, giá cả, chất lượng tài xế, các đánh giá, … tất cả sẽ được hiển thị rõ ràng để bạn yên tâm đặt chuyến đi."
               },
               {
-                image: "/img/img_love_car.png",
+                image: require("../assets/img/img_love_car.png"),
                 title: "Moi truong",
                 detail:
                   "Mỗi 2 người đi chung một xe tương đương với việc trồng 4 cây xanh cho việc hấp thụ khí C02 trong vòng 1 năm."
@@ -82,7 +82,7 @@ const HomePage = () => {
             ].map(item => (
               <Col key={item.title} lg={8} md={24}>
                 <div className="d-flex flex-column align-items-center">
-                  <img src={item.image} className="mb-4" />
+                  <img src={item.image} className="mb-4" alt={item.title} />
                   <Text strong className="mb-2">
                     {item.title}
                   </Text>
@@ -99,8 +99,9 @@ const HomePage = () => {
             <Row type="flex" align="middle" gutter={32}>
               <Col md={24} lg={12}>
                 <img
-                  src="/img/img_mac.png"
+                  src={require("../assets/img/img_mac.png")}
                   style={{ width: "90%", height: "90%" }}
+                  alt="Macbook"
                 />
               </Col>
               <Col className="align-self-start" md={24} lg={6}>
@@ -140,7 +141,7 @@ const HomePage = () => {
           <Row type="flex" align="middle">
             <Col lg={6} md={24}>
               <div className="d-flex flex-row justify-content-center">
-                <img src="/img/img_gift.png" />
+                <img src={require("../assets/img/img_gift.png")} alt="Gift" />
               </div>
             </Col>
             <Col lg={12} md={24}>

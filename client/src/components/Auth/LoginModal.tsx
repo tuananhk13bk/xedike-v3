@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Modal, Form, Icon, Button, Checkbox } from "antd";
+import { Modal, Form, Icon, Button, Checkbox, Alert } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import { Link } from "react-router-dom";
@@ -15,10 +15,8 @@ export default class LoginModal extends React.Component<ILoginModalProps, any> {
   initState = {
     username: "",
     password: "",
-    errors: {
-      username: "",
-      password: ""
-    }
+    errors: "",
+    alertVisible: false
   };
   state = this.initState;
 
@@ -32,7 +30,9 @@ export default class LoginModal extends React.Component<ILoginModalProps, any> {
 
     const errors = validateLoginInput({ username, password });
 
-    this.setState({ errors });
+    if (errors) {
+      this.setState({ errors, alertVisible: true });
+    }
   };
 
   clearAllInternalStates = () => {
@@ -44,6 +44,10 @@ export default class LoginModal extends React.Component<ILoginModalProps, any> {
     this.clearAllInternalStates();
   };
 
+  handleCloseAlert = () => {
+    this.setState({ alertVisible: false });
+  };
+
   public render() {
     const { loginIsOpen } = this.props;
     return (
@@ -53,25 +57,30 @@ export default class LoginModal extends React.Component<ILoginModalProps, any> {
         onCancel={this.handleCloseModal}
       >
         <div className="text-center my-5">
-          <Title level={4}>Dang nhap</Title>
-          <Text>Ban chua co tai khoan?</Text>
+          <Title level={4}>Login</Title>
+          <Text>Do not have an account?</Text>
           <Link to="/register" className="ml-1 no-decoration">
-            Dang ky
+            Register
           </Link>
         </div>
-        <Text className="d-none mb-2" type="danger">
-          User or password are incorrect
-        </Text>
+        {this.state.alertVisible ? (
+          <Alert
+            className="login-alert"
+            message={this.state.errors}
+            type="error"
+            closable
+            afterClose={this.handleCloseAlert}
+          />
+        ) : null}
         <Form className="login-form" onSubmit={this.handleSubmit}>
           <FormInput
             autoFocus={true}
             size="large"
             type="text"
-            prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+            prefix={<Icon type="user" />}
             name="username"
             placeholder="Username"
             value={this.state.username}
-            errorMessage={this.state.errors.username}
             onChange={this.handleInputChange}
           />
           <FormInput
@@ -82,7 +91,6 @@ export default class LoginModal extends React.Component<ILoginModalProps, any> {
             name="password"
             placeholder="Password"
             value={this.state.password}
-            errorMessage={this.state.errors.password}
             onChange={this.handleInputChange}
           />
           <Form.Item>
