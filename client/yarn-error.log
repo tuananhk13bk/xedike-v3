@@ -1,11 +1,11 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/react__router
+  /usr/bin/node /usr/share/yarn/bin/yarn.js dev
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/michael/Android/Sdk/emulator:/home/michael/Android/Sdk/tools:/home/michael/Android/Sdk/tools/bin:/home/michael/Android/Sdk/platform-tools
 
 Yarn version: 
-  1.15.2
+  1.16.0
 
 Node version: 
   10.15.3
@@ -14,17 +14,12 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact__router: Not found
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66058:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:129541:22)
-      at Request.emit (events.js:189:13)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:130513:10)
-      at Request.emit (events.js:189:13)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:130435:12)
-      at Object.onceWrapper (events.js:277:13)
-      at IncomingMessage.emit (events.js:194:15)
-      at endReadableNT (_stream_readable.js:1125:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  SyntaxError: /home/michael/Documents/xedike-v3/package.json: Unexpected token < in JSON at position 157
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:304:30)
+      at /usr/share/yarn/lib/cli.js:315:13
 
 npm manifest: 
   {
@@ -44,6 +39,7 @@ npm manifest:
       "@babel/preset-react": "^7.0.0",
       "@babel/preset-typescript": "^7.3.3",
       "@types/lodash": "^4.14.129",
+      "@types/reach__router": "^1.2.4",
       "@types/react": "^16.8.17",
       "@types/react-dom": "^16.8.4",
       "@types/react-redux": "^7.0.8",
@@ -884,6 +880,14 @@ Lockfile:
     version "15.7.1"
     resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
     integrity sha512-CFzn9idOEpHrgdw8JsoTkaDDyRWk1jrzIV8djzcgpq0y9tG4B4lFT+Nxh52DVpDXV+n4+NPNv7M1Dj5uMp6XFg==
+  
+  "@types/reach__router@^1.2.4":
+    version "1.2.4"
+    resolved "https://registry.yarnpkg.com/@types/reach__router/-/reach__router-1.2.4.tgz#44a701fdf15934880f6dfdef38ca49bc30e2d372"
+    integrity sha512-a+MFhebeSGi0LwHZ0UhH/ke77rWtNQnt8YmaHnquSaY3HmyEi+BPQi3GhPcUPnC9X5BLw/qORw3BPxGb1mCtEw==
+    dependencies:
+      "@types/history" "*"
+      "@types/react" "*"
   
   "@types/react-dom@^16.8.4":
     version "16.8.4"
