@@ -17,7 +17,7 @@ class User {
 
   constructor(userProps: {
     username: string;
-    email?: string;
+    email: string;
     phone: string;
     password: string;
   }) {
@@ -27,29 +27,33 @@ class User {
     this.password = userProps.password;
   }
 
-  public register(): Promise<{
+  public save(): Promise<{
     registerSuccess: boolean;
     user: {
       username: string;
+      email: string;
       phone: string;
+      password: string;
     };
   }> {
-    const { username, phone, password } = this;
+    const { username, email, phone, password } = this;
     return new Promise((resolve, reject) => {
       db.execute(
         `
-					INSERT INTO 
-					user (username, phone, password, register_datetime, is_activated) 
-					VALUES (?, ?, ?, now(), TRUE)
+					REPLACE INTO 
+					user (username, email, phone, password, register_datetime, is_activated) 
+					VALUES (?, ?, ?, ?, now(), TRUE)
 				`,
-        [username, phone, password]
+        [username, email, phone, password]
       )
         .then((res: { [key: string]: any }) =>
           resolve({
             registerSuccess: true,
             user: {
               username,
-              phone
+              email,
+              phone,
+              password
             }
           })
         )
@@ -90,37 +94,18 @@ class User {
     }
   }
 
-  async changePassword(
-    userId: number,
-    currentPassword: string,
-    newPassword: string
-  ): Promise<{ success: boolean; clientErrors: { [key: string]: string } }> {
-    let result: {
-      success: boolean;
-      clientErrors: {
-        [key: string]: string;
-      };
-    } = { success: false, clientErrors: {} };
-    try {
-      const hashedPassword = await db.execute(
-        "SELECT password FROM user WHERE id = ?",
-        [userId]
-      );
-      const isMatch = await User.comparePassword(
-        currentPassword,
-        hashedPassword
-      );
-
-      if (!isMatch) {
-        result.clientErrors.password = "Password incorrect";
-        return result;
-      }
-
-      return result;
-    } catch (error) {
-      throw error;
-    }
-  }
+  // async changePassword(
+  //   currentPassword: string,
+  //   newPassword: string
+  // ): Promise<{ success: boolean; clientErrors: { [key: string]: string } }> {
+  //   let result: {
+  //     success: boolean;
+  //     clientErrors: {
+  //       [key: string]: string;
+  //     };
+  //   } = { success: false, clientErrors: {} };
+  //   User.comparePassword;
+  // }
 
   static async checkExists(
     valuesToCheck: ICheckExists
@@ -172,12 +157,9 @@ class User {
 
   static find() {}
 
-  static findById(id: number | string) {
+  static findById(id: number | string): Promise<{ [key: string]: any }> {
     return new Promise((resolve, reject) => {
-      db.execute(
-        "SELECT id, username, email, phone, password FROM user WHERE id = ?",
-        [id]
-      )
+      db.execute("SELECT * FROM user WHERE id = ?", [id])
         .then((res: any) => {
           resolve(camelcaseKeys(res[0][0]));
         })

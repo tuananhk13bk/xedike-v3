@@ -6,6 +6,7 @@ import { Response, Request } from "express";
 
 const postRegisterUser = async (req: Request, res: Response) => {
   const { username, phone, password } = req.body;
+  console.log(username, phone, password);
   const error500 = "Internal Server Error";
   try {
     const { isExisted, clientErrors } = await User.checkExists({
@@ -18,14 +19,15 @@ const postRegisterUser = async (req: Request, res: Response) => {
     const newUser = new User({
       username,
       phone,
-      password
+      password,
+      email: null
     });
     const isHashed = await newUser.hashPassword();
     if (!isHashed) {
       return res.status(500).json(error500);
     }
 
-    const registeredUser = await newUser.register();
+    const registeredUser = await newUser.save();
     return res.status(200).json(registeredUser);
   } catch (err) {
     console.log(err);
@@ -42,7 +44,7 @@ const postLoginUser = async (req: Request, res: Response) => {
       return res.status(400).json(invalidAccountError);
     }
 
-    const isMatch = await User.comparePassword(password, user.userPassword);
+    const isMatch = await User.comparePassword(password, user.password);
     if (!isMatch) {
       return res.status(400).json(invalidAccountError);
     }
@@ -71,6 +73,38 @@ const postLoginUser = async (req: Request, res: Response) => {
   }
 };
 
-const postChangePassword = async (req: Request, res: Response) => {};
+const putChangePassword = async (req: Request, res: Response) => {
+  const { username, email, phone, currentPassword, newPassword } = req.body;
+  const error500 = "Internal Server Error";
+  const invalidAccountError = "Incorrect username or password";
+  const invalidPasswordError = "Incorrect password";
+  try {
+    const { isExisted, user } = await User.checkExists({ username });
+    if (!isExisted) {
+      return res.status(400).json(invalidAccountError);
+    }
 
-export { postRegisterUser, postLoginUser, postChangePassword };
+    const isMatch = await User.comparePassword(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json(invalidPasswordError);
+    }
+
+    const newUser = new User({ username, email, phone, password: newPassword });
+
+    const isHashed = await newUser.hashPassword();
+    if (!isHashed) {
+      return res.status(500).json(error500);
+    }
+    const updatedUser = await newUser.save();
+    res.status(200).json("change password success!");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error500);
+  }
+};
+
+const putChangeUser = async (req:Request, res: Response) => {
+	const {id, username, email, }
+}
+
+export { postRegisterUser, postLoginUser, putChangePassword };
