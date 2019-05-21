@@ -2,6 +2,7 @@ import * as React from "react";
 import TripsListStepsContainer from "../containers/TripsListStepsContainer";
 import TripsListContainer from "../containers/TripsListContainer";
 import { Row, Col } from "antd";
+import TripsListFilterContainer from "../containers/TripsListFilterContainer";
 
 export interface ITripsListPageProps {}
 
@@ -17,6 +18,9 @@ export default class TripsListPage extends React.Component<
           <Row gutter={32}>
             <Col span={16}>
               <TripsListContainer />
+            </Col>
+            <Col span={8}>
+              <TripsListFilterContainer />
             </Col>
           </Row>
         </div>

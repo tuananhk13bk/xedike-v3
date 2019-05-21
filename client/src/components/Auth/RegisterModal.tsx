@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Modal, Form, Input, Button, Row, Col } from "antd";
+import { Modal, Form, Button, Row, Col, DatePicker } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import { Link } from "react-router-dom";
@@ -18,31 +18,44 @@ export default class RegisterModal extends React.Component<
   initState = {
     registerPassenger: false,
     registerDriver: false,
-    username: "",
-    password: "",
-    password2: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    dobYear: "",
+    username: null,
+    password: null,
+    password2: null,
+    firstName: null,
+    lastName: null,
+    phone: null,
+    dateOfBirth: null,
     errors: {
-      username: "",
-      password: "",
-      password2: "",
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      dobYear: ""
+      username: null,
+      password: null,
+      password2: null,
+      firstName: null,
+      lastName: null,
+      phone: null,
+      dateOfBirth: null
     }
   };
 
   state = this.initState;
 
-  handleInputChange = (e: any) => {
+  setErrors = (errorValue: string, errorField: string) => {
     this.setState({
-      [e.target.name]: e.target.value,
-      errors: this.initState.errors
+      ...this.state,
+      errors: { ...this.state.errors, [errorField]: errorValue }
     });
+  };
+
+  handleInputChange = (e: any) => {
+    const fieldName: string = e.target.name;
+    const fieldValue: string = e.target.value;
+    const newValue = { [fieldName]: fieldValue };
+    this.setState(newValue, () =>
+      this.setErrors(validateRegisterInput(this.state, fieldName), fieldName)
+    );
+  };
+
+  handleDateChange = (date: any, dateString: any) => {
+    this.setState({ dateOfBirth: dateString });
   };
 
   clearAllInternalStates = () => {
@@ -50,42 +63,38 @@ export default class RegisterModal extends React.Component<
   };
 
   handleCloseModal = () => {
-    this.setState({ registerPassenger: false, registerDriver: false }, () =>
-      this.props.toggleRegisterModal()
-    );
+    this.props.toggleRegisterModal();
+    this.clearAllInternalStates();
   };
 
   handleSubmit = (e: any) => {
     e.preventDefault();
-    const {
-      username,
-      password,
-      password2,
-      firstName,
-      lastName,
-      phoneNumber,
-      dobYear
-    } = this.state;
-    const errors = validateRegisterInput({
-      username,
-      password,
-      password2,
-      firstName,
-      lastName,
-      phoneNumber,
-      dobYear
-    });
-    this.setState({ errors });
+  };
+
+  handleRegisterButtonStatus = (): boolean => {
+    console.log(this.state);
+    if (
+      this.state.username &&
+      this.state.password &&
+      this.state.password2 &&
+      this.state.firstName &&
+      this.state.lastName &&
+      this.state.phone &&
+      this.state.dateOfBirth
+    ) {
+      return false;
+    }
+    return true;
   };
 
   getModalTitle = (): React.ReactElement => {
     let modalTitle;
     if (this.state.registerPassenger && !this.state.registerDriver) {
-      modalTitle = <Title level={4}>Dang ky tai khoan hanh khach</Title>;
+      modalTitle = <Title level={4}>Register passenger account</Title>;
     } else if (this.state.registerDriver && !this.state.registerPassenger) {
-      modalTitle = <Title level={4}>Dang ky tai khoan tai xe</Title>;
+      modalTitle = <Title level={4}>Register driver account</Title>;
     } else {
-      modalTitle = <Title level={4}>Ban muon dang ky voi tai khoan</Title>;
+      modalTitle = <Title level={4}>You want to register as</Title>;
     }
     return modalTitle;
   };
@@ -102,7 +111,7 @@ export default class RegisterModal extends React.Component<
             type="text"
             prefix={null}
             name="username"
-            placeholder="Username"
+            placeholder="Username*"
             value={this.state.username}
             errorMessage={this.state.errors.username}
             onChange={this.handleInputChange}
@@ -113,7 +122,7 @@ export default class RegisterModal extends React.Component<
             type="password"
             prefix={null}
             name="password"
-            placeholder="Password"
+            placeholder="Password*"
             value={this.state.password}
             errorMessage={this.state.errors.password}
             onChange={this.handleInputChange}
@@ -124,7 +133,7 @@ export default class RegisterModal extends React.Component<
             type="password"
             prefix={null}
             name="password2"
-            placeholder="Confirm Password"
+            placeholder="Confirm Password*"
             value={this.state.password2}
             errorMessage={this.state.errors.password2}
             onChange={this.handleInputChange}
@@ -137,7 +146,7 @@ export default class RegisterModal extends React.Component<
                 type="text"
                 prefix={null}
                 name="lastName"
-                placeholder="Last Name"
+                placeholder="Last Name*"
                 value={this.state.lastName}
                 errorMessage={this.state.errors.lastName}
                 onChange={this.handleInputChange}
@@ -150,44 +159,32 @@ export default class RegisterModal extends React.Component<
                 type="text"
                 prefix={null}
                 name="firstName"
-                placeholder="First Name"
+                placeholder="First Name*"
                 value={this.state.firstName}
                 errorMessage={this.state.errors.firstName}
                 onChange={this.handleInputChange}
               />
             </Col>
           </Row>
-          <Row gutter={16}>
-            <Col span={16}>
-              <FormInput
-                autoFocus={false}
-                size="large"
-                type="text"
-                prefix={null}
-                name="phoneNumber"
-                placeholder="Phone Number"
-                value={this.state.phoneNumber}
-                errorMessage={this.state.errors.phoneNumber}
-                onChange={this.handleInputChange}
-              />
-            </Col>
-            <Col span={8}>
-              <FormInput
-                autoFocus={false}
-                size="large"
-                type="number"
-                min="1900"
-                max="2019"
-                step="1"
-                prefix={null}
-                name="dobYear"
-                placeholder="Dob Year"
-                value={this.state.dobYear}
-                errorMessage={this.state.errors.dobYear}
-                onChange={this.handleInputChange}
-              />
-            </Col>
-          </Row>
+          <FormInput
+            autoFocus={false}
+            size="large"
+            type="text"
+            prefix={null}
+            name="phone"
+            placeholder="Phone Number*"
+            value={this.state.phone}
+            errorMessage={this.state.errors.phone}
+            onChange={this.handleInputChange}
+          />
+          <Form.Item>
+            <DatePicker
+              className="btn-block"
+              size="large"
+              placeholder="Date of birth*"
+              onChange={this.handleDateChange}
+            />
+          </Form.Item>
           <Form.Item>
             <Text className="text-center d-block">
               Khi dang ky tai khoan, mac dinh ban da <strong>dong y</strong>
@@ -203,8 +200,9 @@ export default class RegisterModal extends React.Component<
               type="primary"
               htmlType="submit"
               className="btn-block"
+              disabled={this.handleRegisterButtonStatus()}
             >
-              Dang ky
+              Register
             </Button>
           </Form.Item>
         </Form>
@@ -216,18 +214,24 @@ export default class RegisterModal extends React.Component<
             onClick={() => this.setState({ registerPassenger: true })}
             className="register-selection d-block no-decoration text-center"
           >
-            <img src="/img/img_signup_passenger.png" />
+            <img
+              src={require("../../assets/img/img_signup_passenger.png")}
+              alt="Signup Passenger"
+            />
             <Text strong className="d-block mt-4">
-              Hanh khach
+              Passenger
             </Text>
           </div>
           <div
             onClick={() => this.setState({ registerDriver: true })}
             className="register-selection d-block no-decoration text-center"
           >
-            <img src="/img/img_signup_driver.png" />
+            <img
+              src={require("../../assets/img/img_signup_driver.png")}
+              alt="Signup Driver"
+            />
             <Text strong className="d-block mt-4">
-              Tai xe
+              Driver
             </Text>
           </div>
         </div>
@@ -248,10 +252,10 @@ export default class RegisterModal extends React.Component<
         <div className="register p-3">
           <div className="text-center my-5">
             {this.getModalTitle()}
-            <Text>Ban da co tai khoan?</Text>
-            <a href="/login" className="ml-1 no-decoration">
-              Dang nhap
-            </a>
+            <Text>Already have an account?</Text>
+            <Link to="/login" className="ml-1 no-decoration">
+              Login
+            </Link>
           </div>
           {this.getModalContent()}
         </div>

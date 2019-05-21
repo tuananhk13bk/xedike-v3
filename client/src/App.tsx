@@ -1,21 +1,24 @@
-import React from "react";
-import MainLayout from "./layout/MainLayout";
-import HomePage from "./pages/HomePage";
+import * as React from "react";
+import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import TripsListPage from "./pages/TripsListPage";
+
+import MainLayout from "./layout/MainLayout";
+import Loading from "./components/Loading";
+const HomePage = lazy(() => import("./pages/HomePage"));
+const TripsListPage = lazy(() => import("./pages/TripsListPage"));
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Router>
-        <MainLayout>
+    <Router>
+      <MainLayout>
+        <Suspense fallback={<Loading />}>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/trips-list" component={TripsListPage} />
           </Switch>
-        </MainLayout>
-      </Router>
-    </div>
+        </Suspense>
+      </MainLayout>
+    </Router>
   );
 };
 
