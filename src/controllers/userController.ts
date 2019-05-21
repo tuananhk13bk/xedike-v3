@@ -103,8 +103,8 @@ const putChangePassword = async (req: Request, res: Response) => {
   }
 };
 
-const putChangeUser = async (req:Request, res: Response) => {
-	const {id, username, email, }
-}
+// const putChangeUser = async (req:Request, res: Response) => {
+// 	const {id, username, email, }
+// }
 
 export { postRegisterUser, postLoginUser, putChangePassword };
