@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "module": "commonjs",
     "target": "es6",
     "lib": ["es2015", "es2017", "dom"],
@@ -9,9 +12,12 @@
     "allowSyntheticDefaultImports": false,
     "jsx": "react",
     "allowJs": true,
-    "baseUrl": "./",
+    "baseUrl": "src",
     "paths": {
-      "components/*": ["src/components/*"]
+      "actions/*": ["actions/*"],
+      "components/*": ["components/*"],
+      "containers/*": ["containers/*"]
     }
   }
+  // "include": ["src/**/*"]
 }

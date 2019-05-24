@@ -2,7 +2,6 @@ import * as React from "react";
 import { Card, Icon, Row, Col, Avatar, Rate } from "antd";
 import data from "../../data";
 import Text from "antd/lib/typography/Text";
-
 interface ITripsListProps {}
 
 const TripsList: React.FunctionComponent<ITripsListProps> = props => {
