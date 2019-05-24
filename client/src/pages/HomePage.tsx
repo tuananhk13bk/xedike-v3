@@ -4,7 +4,6 @@ import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import Landing from "../components/Landing";
 const { Content } = Layout;
-
 const OurNumberItem = ({
   number,
   title,

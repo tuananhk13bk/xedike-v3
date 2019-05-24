@@ -3,14 +3,25 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+function srcPath(subDir) {
+  return path.join(__dirname, "src", subDir);
+}
+
 module.exports = {
   entry: "./src/index.tsx",
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    alias: {
+      actions: srcPath("actions"),
+      components: srcPath("components"),
+      containers: srcPath("containers")
+    },
+    extensions: [".ts", ".tsx", ".js", "jsx", "json"]
   },
   output: {
+    publicPath: "/",
     path: path.join(__dirname, "/dist"),
-    filename: "bundle.min.js"
+    filename: "[name].js",
+    chunkFilename: "[name].[chunkhash].js"
   },
   module: {
     rules: [
@@ -65,7 +76,6 @@ module.exports = {
       }
     ]
   },
-  resolve: { extensions: [".js", ".jsx", ".tsx", ".ts", ".json"] },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -78,6 +88,7 @@ module.exports = {
   ],
 
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    publicPath: "/"
   }
 };
