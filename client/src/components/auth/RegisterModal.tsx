@@ -18,21 +18,21 @@ export default class RegisterModal extends React.Component<
   initState = {
     registerPassenger: false,
     registerDriver: false,
-    username: null,
-    password: null,
-    password2: null,
-    firstName: null,
-    lastName: null,
-    phone: null,
-    dateOfBirth: null,
+    username: "",
+    password: "",
+    password2: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    dateOfBirth: "",
     errors: {
-      username: null,
-      password: null,
-      password2: null,
-      firstName: null,
-      lastName: null,
-      phone: null,
-      dateOfBirth: null
+      username: "",
+      password: "",
+      password2: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      dateOfBirth: ""
     }
   };
 

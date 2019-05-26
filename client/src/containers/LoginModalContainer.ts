@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { toggleLoginModal } from "../actions/auth/authActions";
-import LoginModal from "../components/Auth/LoginModal";
+import LoginModal from "../components/auth/LoginModal";
 
 const mapStateToProps = (state: any) => ({
   loginIsOpen: state.authReducer.loginIsOpen

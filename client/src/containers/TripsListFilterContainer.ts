@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import TripsListFilter from "../components/TripsList/TripsListFilter";
+import TripsListFilter from "../components/trip-list/TripsListFilter";
 
 const mapStateToProps = (state: any) => ({});
 

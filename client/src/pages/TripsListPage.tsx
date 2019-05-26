@@ -16,10 +16,10 @@ export default class TripsListPage extends React.Component<
         <TripsListStepsContainer />
         <div className="container mt-4">
           <Row gutter={32}>
-            <Col span={16}>
+            <Col lg={16} sm={24}>
               <TripsListContainer />
             </Col>
-            <Col span={8}>
+            <Col lg={8}>
               <TripsListFilterContainer />
             </Col>
           </Row>

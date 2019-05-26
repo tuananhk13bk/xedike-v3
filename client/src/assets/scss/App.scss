@@ -152,6 +152,14 @@ html {
 .trips-list-card {
   width: 100%;
 }
+
+.trips-list-title {
+  i {
+    font-size: 32px;
+    color: $primary;
+    margin-right: 1rem;
+  }
+}
 // END OF TRIPS LIST PAGE
 
 // FOOTER
