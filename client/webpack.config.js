@@ -92,7 +92,7 @@ module.exports = {
     })
   ],
 
-  devtool: "cheap-module-evel-source-map",
+  devtool: "cheap-module-eval-source-map",
 
   devServer: {
     historyApiFallback: true,
