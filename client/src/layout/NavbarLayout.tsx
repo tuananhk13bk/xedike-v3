@@ -1,8 +1,12 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import LoginModalContainer from "../containers/LoginModalContainer";
-import RegisterModalContainer from "../containers/RegisterModalContainer";
 
+const LoginModalContainer = React.lazy(() =>
+  import("containers/LoginModalContainer")
+);
+const RegisterModalContainer = React.lazy(() =>
+  import("containers/RegisterModalContainer")
+);
 interface INavbarLayoutProps {
   toggleLoginModal: () => { type: string };
   toggleRegisterModal: () => { type: string };
@@ -13,7 +17,7 @@ export default class NavbarLayout extends React.Component<
   any
 > {
   componentDidMount() {
-    console.log(window.location.origin);
+    console.log(window.location);
   }
   public render() {
     return (

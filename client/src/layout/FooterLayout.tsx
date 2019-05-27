@@ -6,7 +6,7 @@ const { Footer } = Layout;
 
 const FooterLayout = () => {
   return (
-    <Footer>
+    <Footer className="bg-white">
       <div className="container">
         <Row>
           <Col lg={6} md={12}>

@@ -12,8 +12,13 @@ module.exports = {
   resolve: {
     alias: {
       actions: srcPath("actions"),
+      assets: srcPath("assets"),
       components: srcPath("components"),
-      containers: srcPath("containers")
+      containers: srcPath("containers"),
+      layout: srcPath("layout"),
+      pages: srcPath("pages"),
+      reducers: srcPath("reducers"),
+      utils: srcPath("utils")
     },
     extensions: [".ts", ".tsx", ".js", "jsx", "json"]
   },
@@ -86,6 +91,8 @@ module.exports = {
       chunkFilename: "[id].css"
     })
   ],
+
+  devtool: "cheap-module-eval-source-map",
 
   devServer: {
     historyApiFallback: true,

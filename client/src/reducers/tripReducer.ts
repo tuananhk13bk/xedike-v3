@@ -1,7 +1,8 @@
-import * as trips from "../actions/trip/tripActionTypes";
+import * as types from "../actions/trip/tripActionTypes";
 
 const initialState = {
   allTrips: [],
+  allProvinces: [],
   tripIdOnSelect: ""
 };
 
@@ -10,11 +11,14 @@ export default (
   { type, payload }: { type: string; payload: any }
 ) => {
   switch (type) {
-    case trips.SELECT_TRIP:
+    case types.SELECT_TRIP:
       return { ...state, tripIdOnSelect: payload };
 
-    case trips.GET_ALL_TRIPS:
+    case types.GET_ALL_TRIPS:
       return { ...state, allTrips: payload };
+
+    case types.GET_ALL_PROVINCES:
+      return { ...state, allProvinces: payload };
 
     default:
       return state;

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
@@ -15,8 +15,13 @@
     "baseUrl": "src",
     "paths": {
       "actions/*": ["actions/*"],
+      "assets/*": ["actions/*"],
       "components/*": ["components/*"],
-      "containers/*": ["containers/*"]
+      "containers/*": ["containers/*"],
+      "layout/*": ["layout/*"],
+      "pages/*": ["pages/*"],
+      "reducers/*": ["reducers/*"],
+      "utils/*": ["utils/*"]
     }
   }
   // "include": ["src/**/*"]

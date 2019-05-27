@@ -14,9 +14,21 @@ const TripsListSteps: React.FunctionComponent<ITripsListStepsProps> = props => {
         <Row>
           <Col span={16}>
             <Steps current={1}>
-              <Step title="In Progress" description="This is a description." />
-              <Step title="In Progress" description="This is a description." />
-              <Step title="Waiting" description="This is a description." />
+              <Step
+                status="process"
+                title="In Progress"
+                description="This is a description."
+              />
+              <Step
+                status="wait"
+                title="In Progress"
+                description="This is a description."
+              />
+              <Step
+                status="wait"
+                title="Waiting"
+                description="This is a description."
+              />
             </Steps>
           </Col>
         </Row>

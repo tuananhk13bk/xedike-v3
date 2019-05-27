@@ -2,16 +2,23 @@ import * as React from "react";
 import { Card, Icon, Row, Col, Avatar, Rate } from "antd";
 import data from "../../data";
 import Text from "antd/lib/typography/Text";
+
+const TripsListTitle = (): JSX.Element => {
+  return (
+    <div className="trips-list-title d-flex align-items-center">
+      <Icon type="file-search" />
+      <Text>Trip Lists</Text>
+    </div>
+  );
+};
+
 interface ITripsListProps {}
 
 const TripsList: React.FunctionComponent<ITripsListProps> = props => {
+  console.log(props);
   return (
     <div className="trips-list">
-      <Card
-        className="trips-list-card"
-        title={`${<Icon type="file-search" />}`}
-        extra={<a href="#">More</a>}
-      >
+      <Card className="trips-list-card" title={<TripsListTitle />}>
         {data.map(trip => (
           <Row key={trip.tripId} gutter={16}>
             <Col lg={6}>
