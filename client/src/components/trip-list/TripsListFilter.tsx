@@ -33,13 +33,20 @@ const DestinationPlaceholder = (): JSX.Element => {
   );
 };
 
-export interface ITripsListFilterProps {}
+export interface ITripsListFilterProps {
+  allProvinces: [{ id: string; province: string }];
+  getAllProvinces: () => any;
+}
 
 export default class TripsListFilter extends React.Component<
   ITripsListFilterProps,
   any
 > {
+  componentDidMount() {
+    this.props.getAllProvinces();
+  }
   public render() {
+    console.log(this.props);
     return (
       <Card className="trips-list-filter">
         <div className="d-flex align-items-center mb-3">
@@ -51,14 +58,18 @@ export default class TripsListFilter extends React.Component<
           placeholder={<DeparturePlaceholder />}
           size="large"
         >
-          <Option value="binhdinh">Binh Dinh</Option>
+          {this.props.allProvinces.map(province => (
+            <Option value={province.id}>{province.province}</Option>
+          ))}
         </Select>
         <Select
           className="btn-block trips-list-filter-destination"
           placeholder={<DestinationPlaceholder />}
           size="large"
         >
-          <Option value="binhdinh">Binh Dinh</Option>
+          {this.props.allProvinces.map(province => (
+            <Option value={province.id}>{province.province}</Option>
+          ))}
         </Select>
         <DatePicker
           size="large"

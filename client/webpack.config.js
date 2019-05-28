@@ -96,6 +96,9 @@ module.exports = {
 
   devServer: {
     historyApiFallback: true,
-    publicPath: "/"
+    publicPath: "/",
+    proxy: {
+      "/provinces": "http://localhost:5000"
+    }
   }
 };

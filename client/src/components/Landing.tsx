@@ -10,14 +10,11 @@ const Landing: React.FC = () => {
         <div className="container">
           <div className="d-flex flex-column align-items-center">
             <Title level={1} className="text-white" style={{}}>
-              Bat dau chuyen di cua ban
+              Start your trip now
             </Title>
             <Title level={4} className="text-white font-weight-normal">
-              Đã có 1168 thành viên sử dụng dịch vụ trên toàn quốc
+              There are 1168 memebers nationwide
             </Title>
-            <Select style={{ width: 200, height: 60 }} size="large">
-              <Option value="danang">Da nang</Option>
-            </Select>
           </div>
         </div>
       </div>

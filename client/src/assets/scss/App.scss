@@ -112,7 +112,14 @@ html {
   background: url("https://api.xedike.vn/StaticFiles/TopImage/Default/img_topbg_home.png?_t=1520592869.56458")
     no-repeat center center/cover;
   width: 100%;
-  height: 100%;
+  height: 670px;
+}
+
+.landing-search {
+  div {
+    width: 300px;
+		height: 70px;
+  }
 }
 
 .introduction {
@@ -131,7 +138,7 @@ html {
 }
 
 .dark-overlay {
-  padding: 70px 0;
+  padding-top: 200px;
   position: relative;
   top: 0;
   left: 0;

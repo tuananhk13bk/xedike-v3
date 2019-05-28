@@ -16,7 +16,7 @@ export const getAllProvinces = () => (
   dispatch: (action: { [key: string]: any }) => any
 ) => {
   axios
-    .get("http://localhost:5000/provines")
+    .get("http://localhost:5000/provinces")
     .then(res => dispatch({ type: types.GET_ALL_PROVINCES, payload: res.data }))
     .catch(err =>
       dispatch({ type: types.RECEIVE_TRIP_ERROR, payload: err.response.data })
